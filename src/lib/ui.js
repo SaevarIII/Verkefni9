@@ -8,7 +8,11 @@ import { el } from './elements.js';
  * @returns {HTMLElement} Leitarform.
  */
 export function renderSearchForm(searchHandler, query = undefined) {
-  /* TODO útfæra */
+  const form = el('form', { }, el('input', {value: query ?? '', name: 'query'}), el('button', {}, 'leita'));
+
+  form.addEventListener('submit', searchHandler); VANTAR
+
+  return form;
 }
 
 /**
@@ -35,7 +39,16 @@ function setNotLoading(parentElement, searchForm = undefined) {
  * @param {string} query Leitarstrengur.
  */
 function createSearchResults(results, query) {
-  /* TODO útfæra */
+  const list = el ('ul', {class: 'search-results'});
+
+  if (!results) {
+    const noResultsElement = (el('li', {}, 'Engar niðurstöður'))
+  }
+
+  for(const results of results) {
+
+  }
+  VANTAR
 }
 
 /**
@@ -45,7 +58,14 @@ function createSearchResults(results, query) {
  * @param {string} query Leitarstrengur.
  */
 export async function searchAndRender(parentElement, searchForm, query) {
-  /* TODO útfæra */
+
+  parentElement.appendChild(el('p', {}, 'leita að ${query}'));
+  const results = await searchLaunches(query);
+
+  const searchResultsElement = createSearchResults (results , query);
+
+
+
 }
 
 /**
@@ -54,13 +74,20 @@ export async function searchAndRender(parentElement, searchForm, query) {
  * @param {(e: SubmitEvent) => void} searchHandler Fall sem keyrt er þegar leitað er.
  * @param {string | undefined} query Leitarorð, ef eitthvað, til að sýna niðurstöður fyrir.
  */
+
 export function renderFrontpage(
   parentElement,
   searchHandler,
   query = undefined,
 ) {
-  const heading = el('h1', {}, 'Geimskotaleitin 🚀');
+  const heading = el(
+    'h1',
+    { class: 'heading', 'data-foo': 'bar' },
+    'Geimskotaleitin 🚀',
+    el('span', {}, 'hallóp'),
+  );
   const searchForm = renderSearchForm(searchHandler, query);
+  console.log(heading, searchForm);
   const container = el('main', {}, heading, searchForm);
   parentElement.appendChild(container);
 

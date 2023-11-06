@@ -33,8 +33,16 @@ export async function sleep(ms) {
  *  kom upp.
  */
 export async function searchLaunches(query) {
-  /* TODO útfæra */
+  const url = new URL ('/launches', API_URL);
+  url.searchParams.set('search' ,query);
+  url.searchParams.set('mode' ,list);
+  const response = await fetch(url);
+
+  const json =  await response.json();
+
+  return json.results;
 }
+
 
 /**
  * Skilar stöku geimskoti eftir auðkenni eða `null` ef ekkert fannst.
