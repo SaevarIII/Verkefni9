@@ -1,4 +1,3 @@
-
 import { renderDetails, renderFrontpage, searchAndRender } from './lib/ui.js';
 
 /**
@@ -7,8 +6,6 @@ import { renderDetails, renderFrontpage, searchAndRender } from './lib/ui.js';
  * @param {HTMLElement} element
  * @returns {Promise<void>}
  */
-
-
 
 async function onSearch(e) {
   e.preventDefault();

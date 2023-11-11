@@ -1,5 +1,5 @@
-import { getLaunch, searchLaunches } from './api.js';
-import { el } from './elements.js';
+import { getLaunch, searchLaunches } from "./api.js";
+import { el } from "./elements.js";
 
 /**
  * Býr til leitarform.
@@ -9,13 +9,13 @@ import { el } from './elements.js';
  */
 export function renderSearchForm(searchHandler, query = undefined) {
   const form = el(
-    'form',
+    "form",
     {},
-    el('input', { value: query ?? '', name: 'query' }),
-    el('button', {}, 'Leita')
+    el("input", { value: query ?? "", name: "query" }),
+    el("button", {}, "Leita"),
   );
 
-  form.addEventListener('submit', searchHandler);
+  form.addEventListener("submit", searchHandler);
 
   return form;
 }
@@ -26,10 +26,10 @@ export function renderSearchForm(searchHandler, query = undefined) {
  * @param {Element | undefined} searchForm Leitarform sem á að gera óvirkt.
  */
 function setLoading(parentElement, searchForm = undefined) {
-  let loadingElement = parentElement.querySelector('.loading');
+  let loadingElement = parentElement.querySelector(".loading");
 
   if (!loadingElement) {
-    loadingElement = el('div', { class: 'loading' }, 'Sæki gögn...');
+    loadingElement = el("div", { class: "loading" }, "Sæki gögn...");
     parentElement.appendChild(loadingElement);
   }
 
@@ -37,10 +37,10 @@ function setLoading(parentElement, searchForm = undefined) {
     return;
   }
 
-  const button = searchForm.querySelector('button');
+  const button = searchForm.querySelector("button");
 
   if (button) {
-    button.setAttribute('disabled', 'disabled');
+    button.setAttribute("disabled", disabled);
   }
 }
 
@@ -50,7 +50,7 @@ function setLoading(parentElement, searchForm = undefined) {
  * @param {Element | undefined} searchForm Leitarform sem á að gera virkt.
  */
 function setNotLoading(parentElement, searchForm = undefined) {
-  const loadingElement = parentElement.querySelector('.loading');
+  const loadingElement = parentElement.querySelector(".loading");
 
   if (loadingElement) {
     loadingElement.remove();
@@ -60,10 +60,10 @@ function setNotLoading(parentElement, searchForm = undefined) {
     return;
   }
 
-  const disabledButton = searchForm.querySelector('button[disabled]');
+  const disabledButton = searchForm.querySelector("button[disabled]");
 
   if (disabledButton) {
-    disabledButton.removeAttribute('disabled');
+    disabledButton.removeAttribute("disabled");
   }
 }
 
@@ -73,19 +73,19 @@ function setNotLoading(parentElement, searchForm = undefined) {
  * @param {string} query Leitarstrengur.
  */
 function createSearchResults(results, query) {
-  const list = el('ul', { class: 'results' });
+  const list = el("ul", { class: "results" });
 
   if (!results) {
-    const noResultsElement = el('li', {}, `Villa við leit að ${query}`);
+    const noResultsElement = el("li", {}, `Villa við leit að ${query}`);
     list.appendChild(noResultsElement);
     return list;
   }
 
   if (results.length === 0) {
     const noResultsElement = el(
-      'li',
+      "li",
       {},
-      `Engar niðurstöður fyrir leit að ${query}`
+      `Engar niðurstöður fyrir leit að ${query}`,
     );
     list.appendChild(noResultsElement);
     return list;
@@ -93,10 +93,10 @@ function createSearchResults(results, query) {
 
   for (const result of results) {
     const resultElement = el(
-      'li',
-      { class: 'result' },
-      el('span', { class: 'name' }, result.name),
-      el('span', { class: 'mission' }, result.mission)
+      "li",
+      { class: "result" },
+      el("span", { class: "name" }, result.name),
+      el("span", { class: "mission" }, result.mission),
     );
 
     list.appendChild(resultElement);
@@ -112,15 +112,15 @@ function createSearchResults(results, query) {
  * @param {string} query Leitarstrengur.
  */
 export async function searchAndRender(parentElement, searchForm, query) {
-  const mainElement = parentElement.querySelector('main');
+  const mainElement = parentElement.querySelector("main");
 
   if (!mainElement) {
-    console.warn('fann ekki <main> element');
+    console.warn("fann ekki <main> element");
     return;
   }
 
   // Fjarlægja fyrri niðurstöður
-  const resultsElement = mainElement.querySelector('.results');
+  const resultsElement = mainElement.querySelector(".results");
   if (resultsElement) {
     resultsElement.remove();
   }
@@ -143,16 +143,16 @@ export async function searchAndRender(parentElement, searchForm, query) {
 export function renderFrontpage(
   parentElement,
   searchHandler,
-  query = undefined
+  query = undefined,
 ) {
   const heading = el(
-    'h1',
-    { class: 'heading', 'data-foo': 'bar' },
-    'Geimskotaleitin 🚀'
+    "h1",
+    { class: "heading", "data-foo": "bar" },
+    "Geimskotaleitin 🚀",
   );
   const searchForm = renderSearchForm(searchHandler, query);
 
-  const container = el('main', {}, heading, searchForm);
+  const container = el("main", {}, heading, searchForm);
   parentElement.appendChild(container);
 
   if (!query) {
@@ -175,40 +175,40 @@ export async function renderDetails(parentElement, id) {
 
     if (!launch) {
       const noResultsElement = el(
-        'li',
-        { class: 'noresult' },
-        `Ekkert kom upp fyrir geimskotið: ${id}`
+        "li",
+        { class: "no-result" },
+        `Ekkert kom upp fyrir geimskotið: ${id}`,
       );
       parentElement.appendChild(noResultsElement);
       return;
     }
 
     const container = el(
-      'main',
-      { class: 'details' },
-      el('h1', { class: 'launch-name' }, `${launch.name}`),
+      "main",
+      { class: "details" },
+      el("h1", { class: "launch-name" }, `${launch.name}`),
       el(
-        'div',
-        { class: 'windows' },
-        el('p', { class: 'start' }, `gluggi opinn: ${launch.window_start}`),
-        el('p', { class: 'end' }, `gluggi lokaður: ${launch.window_end}`)
+        "div",
+        { class: "windows" },
+        el("p", { class: "start" }, `gluggi opinn: ${launch.window_start}`),
+        el("p", { class: "end" }, `gluggi lokaður: ${launch.window_end}`),
       ),
-      el('img', { class: 'image', src: `${launch.image}` }),
-      el('span', { class: 'status-name' }, `${launch.status}`),
-      el('span', { class: 'status-description' }, `${launch.status}`),
-      el('span', { class: 'mission-name' }, `${launch.mission}`),
-      el('span', { class: 'mission-description' }, `${launch.mission}`)
+      el("img", { class: "image", src: `${launch.image}` }),
+      el("span", { class: "status-name" }, `${launch.status}`),
+      el("span", { class: "status-description" }, `${launch.status}`),
+      el("span", { class: "mission-name" }, `${launch.mission}`),
+      el("span", { class: "mission-description" }, `${launch.mission}`),
     );
 
     const backElement = el(
-      'div',
-      { class: 'back' },
-      el('a', { href: '/' }, 'Til baka')
+      "div",
+      { class: "back" },
+      el("a", { href: "/" }, "Til baka"),
     );
     parentElement.appendChild(backElement);
     parentElement.appendChild(container);
   } catch (error) {
-    console.error('Error fetching launch details:', error);
+    console.error("Error fetching launch details:", error);
   } finally {
     setNotLoading(parentElement);
   }
