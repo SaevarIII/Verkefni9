@@ -42,6 +42,10 @@ input[type='number'] {
 
 button {
   padding-inline: calc(var(--spacing) / 2);
+  border-radius: 10px;
+  border: 5px
+  color(srgb red green blue)
+
 }
 
 h1 {
@@ -64,3 +68,45 @@ main {
 }
 
 /* TODO nánari stílar */
+
+body{
+  background-color: rgb(141, 86, 4);
+}
+
+.heading{
+  background-color:rgb(128, 123, 123);
+  max-width: 300px;
+  border-radius: 10px;
+  display:inline;
+  text-align: center;
+  border-width: 2px;
+  border-color: rgb(6, 6, 6);
+  border-style: solid;
+}
+
+button{
+  border-radius: 20px;
+  background-color: rgba(128, 123, 123);
+  width: 100px;
+  padding: 1px;
+  border-width: 2px;
+  border-style:solid;
+  border-color: rgb(6, 6, 6);
+  text-align: center;
+}
+
+.results__container {
+  list-style: none;
+}
+
+.results__title {
+  margin-bottom: var(--spacing);
+}
+
+.results__result {
+  margin-bottom: var(--spacing);
+}
+
+
+
+

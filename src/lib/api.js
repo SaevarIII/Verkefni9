@@ -13,9 +13,13 @@
 /** Grunnslóð á API (DEV útgáfa) */
 const API_URL = 'https://lldev.thespacedevs.com/2.2.0/';
 
+
+
+
+
 /**
  * Skilar Promise sem bíður í gefnar millisekúndur.
- * Gott til að prófa loading state, en einnig hægt að nota `throttle` í 
+ * Gott til að prófa loading state, en einnig hægt að nota `throttle` í
  * DevTools.
  * @param {number} ms Tími til að sofa í millisekúndum.
  * @returns {Promise<void>}
@@ -33,16 +37,37 @@ export async function sleep(ms) {
  *  kom upp.
  */
 export async function searchLaunches(query) {
-  const url = new URL ('/launches', API_URL);
-  url.searchParams.set('search' ,query);
-  url.searchParams.set('mode' ,list);
-  const response = await fetch(url);
+  const url = new URL('launch', API_URL);
+  url.searchParams.set('search', query);
+  url.searchParams.set('mode', 'list');
 
-  const json =  await response.json();
+  let response;
+  try {
+    response = await fetch(url);
+  } catch (e) {
+    console.error('Villa kom upp við að sækja gögn');
+    return null;
+  }
+
+  if (!response.ok) {
+    console.error(
+      'Villa við að sækja gögn, ekki 200 staða',
+      response.status,
+      response.statusText
+    );
+    return null;
+  }
+
+  let json;
+  try {
+    json = await response.json();
+  } catch (e) {
+    console.error('Villa við að vinna úr JSON');
+    return null;
+  }
 
   return json.results;
 }
-
 
 /**
  * Skilar stöku geimskoti eftir auðkenni eða `null` ef ekkert fannst.
@@ -51,4 +76,42 @@ export async function searchLaunches(query) {
  */
 export async function getLaunch(id) {
   /* TODO útfæra */
+  
+  const url = new URL('launch', API_URL);
+  url.searchParams.set('id', id);
+  console.log(url);
+
+  let response;
+  try {
+    response = await fetch(url);
+  } catch (e) {
+    console.error('villa kom upp við að sækja gögn', e);
+    return null;
+  }
+
+  if (!response.ok) {
+    console.error(
+      'villa við að sækja gögn, ekki 200 staða',
+      response.status,
+      response.statusText
+    );
+    return null;
+  }
+
+  let json;
+  try {
+    json = await response.json();
+  } catch (e) {
+    console.error('villa við að vinna úr json');
+    return null;
+  }
+
+  return {
+    name: json.name,
+    status: json.status,
+    mission: json.mission,
+    window_start: json.window_start,
+    window_end: json.window_end,
+    image: json.image,
+  };
 }
