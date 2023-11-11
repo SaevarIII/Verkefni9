@@ -11,7 +11,7 @@
 ## Vandamál
 - á í erfiðleikum með "import { empty } from './lib/elements.js';"  í  index.js skránni, það er eins og forritið getur ekki lesið "empty" fallið í element.js. 
 
-- Er búinn að setja flest upp launchwindow.start/end föllinn upp, og allar upplýsingar fyrir geimflugið(mynd, status, lýsing o.fl), en skil ekki hvernig á að setja bæta við linka til að sjá þessar upplýsingar þegar maður leitar af fluginu í HTML. 
+- Er búinn að setja upp renderDetails, getLaunch, launchwindow.start/end föllinn upp, og allar upplýsingar fyrir geimflugið(mynd, status, lýsing o.fl), en skil ekki hvernig á að setja bæta við linka til að sjá þessar upplýsingar þegar maður leitar af fluginu í HTML. 
 
 - Er búinn með öll TODO's dæmin, en ég sé að það vantar samt frekar mikið upp á, sérstaklega linkana. Gerði örrugglega nokkra kóða ranga, veit ekki hvaða kóðar þeir eru
 
