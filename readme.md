@@ -13,4 +13,6 @@
 
 - Er búinn að setja flest upp launchwindow.start/end föllinn upp, og allar upplýsingar fyrir geimflugið(mynd, status, lýsing o.fl), en skil ekki hvernig á að setja bæta við linka til að sjá þessar upplýsingar þegar maður leitar af fluginu í HTML. 
 
+- Er búinn með öll TODO's dæmin, en ég sé að það vantar samt frekar mikið upp á, sérstaklega linkana. Gerði örrugglega nokkra kóða ranga, veit ekki hvaða kóðar þeir eru
+
 
