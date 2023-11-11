@@ -1,4 +1,4 @@
-import { empty } from './lib/elements.js';
+
 import { renderDetails, renderFrontpage, searchAndRender } from './lib/ui.js';
 
 /**
